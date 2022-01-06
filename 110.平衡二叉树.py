@@ -13,19 +13,36 @@
 #         self.right = right
 class Solution:
     isBalance = True
-    def isBalanced(self, root: TreeNode) -> bool:
+    def deep(self, root):
         if not root:
-            return self.isBalance
-        
-        def deep(root):
-            if not root:
-                return 0
-            left = deep(root.left)
-            right = deep(root.right)
-            if abs(left-right)>1:
-                self.isBalance = False
-            return max(left,right)+1
-        deep(root)
+            return 0
+        left = self.deep(root.left)
+        right = self.deep(root.right)
+        if abs(left-right) > 1:
+            self.isBalance = False
+        return max(left, right) + 1
+
+    def isBalanced(self, root: TreeNode) -> bool:
+        self.deep(root)
         return self.isBalance
+
+
+    # isBalance = True
+    # def isBalanced(self, root: TreeNode) -> bool:
+    #     if not root:
+    #         return self.isBalance
+        
+    #     def deep(root):
+    #         if not root:
+    #             return 0
+    #         left = deep(root.left)
+    #         right = deep(root.right)
+    #         if abs(left-right)>1:
+    #             self.isBalance = False
+    #         return max(left,right)+1
+    #     deep(root)
+    #     return self.isBalance
+
+
 # @lc code=end
 
